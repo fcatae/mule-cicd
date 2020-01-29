@@ -11,7 +11,7 @@ pool:
 
 variables:
   MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
-  MAVEN_OPTS: '-Xmx3072m -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER) -s site-api/setting.xml -B'
+  MAVEN_OPTS: '-Xmx3072m -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
 
 steps:
 - task: Cache@2
@@ -33,4 +33,4 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'deploy'
-    options: '-DmuleDeploy -Dcloudhub.username=$(cloudhub.username) -Dcloudhub.password=$(cloudhub.password)'
+    options: ' -s site-api/setting.xml -B -DmuleDeploy -Dcloudhub.username=$(cloudhub.username) -Dcloudhub.password=$(cloudhub.password)'
