@@ -33,8 +33,8 @@
 					    <muleVersion>${app.runtime}</muleVersion>
 					    <username>${cloudhub.username}</username>
 					    <password>${cloudhub.password}</password>
-					    <applicationName>site-sandbox-api</applicationName>
-					    <environment>Sandbox</environment>					    
+					    <applicationName>site-production-api</applicationName>
+					    <environment>Production</environment>					    
 					    <workerType>MICRO</workerType>
 					</cloudHubDeployment>
 
