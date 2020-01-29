@@ -46,3 +46,16 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'site-api/pom.xml'
+    mavenOptions: $(MAVEN_OPTS)
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: false
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'deploy'
+    options: ' -s site-api/setting.xml -B -artifact $(Build.ArtifactStagingDirectory)/site-api-1.0.0-SNAPSHOT-mule-application.jar -DmuleDeploy -Dcloudhub.username=$(cloudhub.username) -Dcloudhub.password=$(cloudhub.password)'
+
