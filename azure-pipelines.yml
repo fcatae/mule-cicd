@@ -57,5 +57,5 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'deploy'
-    options: ' -s site-api/setting.xml -B -artifact $(Build.ArtifactStagingDirectory)/site-api-1.0.0-SNAPSHOT-mule-application.jar -DmuleDeploy -Dcloudhub.username=$(cloudhub.username) -Dcloudhub.password=$(cloudhub.password)'
+    options: ' -s site-api/setting.xml -B -Dartifact=$(Build.ArtifactStagingDirectory)/site-api-1.0.0-SNAPSHOT-mule-application.jar -DmuleDeploy -Dcloudhub.username=$(cloudhub.username) -Dcloudhub.password=$(cloudhub.password)'
 
