@@ -9,27 +9,28 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
+  MAVEN_OPTS: '-Xmx3072m -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
+
 steps:
+- task: Cache@2
+  inputs:
+    key: 'maven | "$(Agent.OS)" | **/pom.xml'
+    restoreKeys: |
+       maven | "$(Agent.OS)"
+       maven
+    path: $(MAVEN_CACHE_FOLDER)
+  displayName: Cache Maven local repo
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'site-api/pom.xml'
-    mavenOptions: '-Xmx3072m'
+    mavenOptions: $(MAVEN_OPTS)
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-    options: '-s site-api/setting.xml -B -Dcloudhub.username=$(cloudhub.username) -Dcloudhub.password=$(cloudhub.password)'
-
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'site-api/pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: false
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'deploy'
     options: '-s site-api/setting.xml -B -DmuleDeploy -Dcloudhub.username=$(cloudhub.username) -Dcloudhub.password=$(cloudhub.password)'
