@@ -21,3 +21,8 @@ Deploy using the command line:
 
     mvn deploy -DmuleDeploy -Dcloudhub.username=<username> -Dcloudhub.password=<password>
 
+Skip validation
+
+```xml
+    <skipDeploymentVerification>true</skipDeploymentVerification>
+```

@@ -35,7 +35,10 @@
                         <server>anypoint-exchange-v2</server>
 					    <applicationName>site-production-api</applicationName>
 					    <environment>Production</environment>					    
-					    <workerType>MICRO</workerType>
+                        <workerType>MICRO</workerType>
+                        
+                        <!-- https://docs.mulesoft.com/mule-runtime/4.2/mmp-concept#skip-deployment-verification -->
+                        <skipDeploymentVerification>true</skipDeploymentVerification>
 					</cloudHubDeployment>
 
 				</configuration>
