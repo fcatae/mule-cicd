@@ -31,8 +31,8 @@
 					<cloudHubDeployment>
 					    <uri>https://anypoint.mulesoft.com</uri>
 					    <muleVersion>${app.runtime}</muleVersion>
-					    <username>${cloudhub.username}</username>
-					    <password>${cloudhub.password}</password>
+					    <!-- username/password -->
+                        <server>anypoint-exchange-v2</server>
 					    <applicationName>site-production-api</applicationName>
 					    <environment>Production</environment>					    
 					    <workerType>MICRO</workerType>
