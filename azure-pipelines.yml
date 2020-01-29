@@ -17,7 +17,7 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
+    publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'deploy'
-    options: '-B -DmuleDeploy -Dcloudhub.username=$(cloudhub.username) -Dcloudhub.password=$(cloudhub.password)'
+    options: '-s setting.xml -B -DmuleDeploy -Dcloudhub.username=$(cloudhub.username) -Dcloudhub.password=$(cloudhub.password)'
